@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const posztRoute = require("./routes/posztRoute");
+const authRoute = require("./routes/authRoute");
 
 const app = express();
 const db = require("./config/mongoose").mongoURI;
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/posztok", posztRoute);
+app.use("/auth", authRoute);
 
 const PORT = 8000 | process.env.PORT;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}...`));
