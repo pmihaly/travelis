@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/posztok", posztRoute);
+app.use("/poszt", posztRoute);
 app.use("/auth", authRoute);
 
 const PORT = 8000 | process.env.PORT;

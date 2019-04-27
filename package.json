@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start-server": "npx nodemon server"
+  },
   "dependencies": {
     "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",

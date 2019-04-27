@@ -1,6 +1,7 @@
 module.exports = (req, res, next) => {
-  const bearerHeader = req.headers["authorization"].split(" ");
+  let bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {
+    bearerHeader = bearerHeader.split(" ");
     const bearerToken = bearerHeader[1];
     req.token = bearerToken;
     next();
