@@ -22,6 +22,7 @@ router.post("/", verifyToken, (req, res) =>
     if (err) {
       res.sendStatus(403);
     }
+    req.body.felhasznalo = authData._id;
     new Poszt(req.body)
       .save()
       .then(poszt => res.json(poszt))
@@ -35,7 +36,13 @@ router.put("/:posztId", verifyToken, (req, res) =>
       res.sendStatus(403);
     }
     Poszt.findByIdAndUpdate(req.params.posztId, req.body)
-      .then(poszt => res.json(poszt))
+      .then(poszt => {
+        if (poszt.felhasznalo.toString() !== authData._id) {
+          res.sendStatus(403);
+        } else {
+          res.json(poszt);
+        }
+      })
       .catch(err => res.json({ error: err }));
   })
 );
@@ -46,7 +53,13 @@ router.delete("/:posztId", verifyToken, (req, res) =>
       res.sendStatus(403);
     }
     Poszt.findByIdAndDelete(req.params.posztId)
-      .then(poszt => res.json(poszt))
+      .then(poszt => {
+        if (poszt.felhasznalo.toString() !== authData._id) {
+          res.sendStatus(403);
+        } else {
+          res.json(poszt);
+        }
+      })
       .catch(err => res.json({ error: err }));
   })
 );

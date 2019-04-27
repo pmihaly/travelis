@@ -10,7 +10,7 @@ const app = express();
 const db = require("./config/mongoose").mongoURI;
 
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true, useFindAndModify: false })
   .then(() => console.log("DB connected..."))
   .catch(err => console.log(err));
 
@@ -21,5 +21,5 @@ app.use(cors());
 app.use("/poszt", posztRoute);
 app.use("/auth", authRoute);
 
-const PORT = 8000 | process.env.PORT;
+const PORT = 8000 || process.env.PORT;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}...`));
