@@ -7,6 +7,7 @@ const router = require("express").Router();
 
 router.get("/", (req, res) =>
   Poszt.find({})
+    .sort([["_id", -1]])
     .then(poszt => res.json(poszt))
     .catch(err => res.json({ error: err }))
 );
