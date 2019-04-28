@@ -16,8 +16,8 @@ export class Tab1Page {
   ngOnInit() {
     this.posztService.getPosztok().subscribe(posztok => {
       // Posztok felhasználóinak nevének lekérése (alapból a felhasznalo egy objectId)
-      Object.keys(posztok).map((poszt: Object) => {
-        poszt = posztok[poszt];
+      Object.keys(posztok).map(egyPoszt => {
+        const poszt = posztok[egyPoszt];
         this.http
           .get(`${environment.serverAddress}/auth/${poszt.felhasznalo}`)
           .subscribe(nev => (poszt.felhasznalo = nev));
