@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { PosztService } from "../services/poszt-service.service";
 
 @Component({
   selector: "app-tab1",
@@ -6,9 +7,13 @@ import { Component } from "@angular/core";
   styleUrls: ["tab1.page.scss"]
 })
 export class Tab1Page {
-  private cim: String = "Vakáció a kastélyban";
-  private leiras: String = "Egy hetet pihentünk a Zürichsee-nél";
-  private helyszin: String = "Zürich, Svájc";
-  private kep: String = "sklafjléskdfjslkdfj";
-  private felhasznalo: String = "Misi";
+  private posztok: Object;
+
+  constructor(private posztService: PosztService) {}
+
+  ngOnInit() {
+    this.posztService
+      .getPosztok()
+      .subscribe(posztok => (this.posztok = posztok));
+  }
 }
