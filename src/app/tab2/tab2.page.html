@@ -1,9 +1,68 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
+    <ng-container *ngIf="!authService.bejelentkezve; else bejelentkezve">
+      <ion-title>Regisztráció</ion-title>
+    </ng-container>
+    <ng-template #bejelentkezve>
+      <ion-title>Fiók</ion-title>
+    </ng-template>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-card>
+    <form [formGroup]="regisztracioForm">
+      <ion-card-header>
+        <ng-container *ngIf="regisztracioSuccess; else nincsSubmit">
+          <ion-card-title>Sikeres regisztráció</ion-card-title>
+        </ng-container>
+        <ng-template #nincsSubmit>
+          <ion-card-title>Regisztráció</ion-card-title>
+        </ng-template>
+
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Felhasználónév</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Jelszó</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-button color="primary" expand="full" type="submit" (click)="onRegisztral()">Regisztráció</ion-button>
+      </ion-card-content>
+    </form>
+  </ion-card>
+
+  <ion-card>
+    <form [formGroup]="bejelentkezesForm">
+      <ion-card-header>
+        <ng-container *ngIf="bejelentkezesSuccess; else nincsBejelentkezes">
+          <ion-card-title>Sikeres bejelentkezés</ion-card-title>
+        </ng-container>
+        <ng-template #nincsBejelentkezes>
+          <ion-card-title>Bejelentkezés</ion-card-title>
+        </ng-template>
+
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Felhasználónév</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Jelszó</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-button color="primary" expand="full" type="submit" (click)="onBejelentkezik()">Bejelentkezés</ion-button>
+      </ion-card-content>
+    </form>
+  </ion-card>
+
+</ion-content>
