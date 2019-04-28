@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { PosztService } from "../services/poszt-service.service";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-tab1",
@@ -9,11 +11,18 @@ import { PosztService } from "../services/poszt-service.service";
 export class Tab1Page {
   private posztok: Object;
 
-  constructor(private posztService: PosztService) {}
+  constructor(private posztService: PosztService, private http: HttpClient) {}
 
   ngOnInit() {
-    this.posztService
-      .getPosztok()
-      .subscribe(posztok => (this.posztok = posztok));
+    this.posztService.getPosztok().subscribe(posztok => {
+      // Posztok felhasználóinak nevének lekérése (alapból a felhasznalo egy objectId)
+      Object.keys(posztok).map((poszt: Object) => {
+        poszt = posztok[poszt];
+        this.http
+          .get(`${environment.serverAddress}/auth/${poszt.felhasznalo}`)
+          .subscribe(nev => (poszt.felhasznalo = nev));
+      });
+      this.posztok = posztok;
+    });
   }
 }
