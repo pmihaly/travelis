@@ -15,7 +15,6 @@ export class AuthService {
     this.localStorage.getItem("token").subscribe(token => {
       if (token) {
         this.bejelentkezve = true;
-        return;
       }
     });
   }
@@ -28,7 +27,7 @@ export class AuthService {
     this.http
       .post(this.serverAddress + "bejelentkezes", felhasznalo)
       .subscribe(valasz => {
-        this.localStorage.setItem("token", valasz.token).subscribe(() => {});
+        this.localStorage.setItem("token", valasz["token"]).subscribe(() => {});
       });
   }
 }
