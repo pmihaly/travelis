@@ -11,58 +11,90 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <form [formGroup]="regisztracioForm">
-      <ion-card-header>
-        <ng-container *ngIf="regisztracioSuccess; else nincsSubmit">
-          <ion-card-title>Sikeres regisztráció</ion-card-title>
-        </ng-container>
-        <ng-template #nincsSubmit>
-          <ion-card-title>Regisztráció</ion-card-title>
-        </ng-template>
 
+  <ng-container *ngIf="authService.bejelentkezve; else nincsBejelentkezve" class="ion-padding">
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" alt="avatar">
+      </ion-avatar>
+      <ion-label>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+    <ion-card *ngFor="let i of [0,1,2,3,4,5]">
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-skeleton-text animated style="width:50%"></ion-skeleton-text>
+        </ion-card-subtitle>
+        <ion-card-title>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Felhasználónév</ion-label>
-          <ion-input formControlName="name"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Jelszó</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <ion-button color="primary" expand="full" type="submit" (click)="onRegisztral()">Regisztráció</ion-button>
+        <ion-skeleton-text animated></ion-skeleton-text>
       </ion-card-content>
-    </form>
-  </ion-card>
 
-  <ion-card>
-    <form [formGroup]="bejelentkezesForm">
-      <ion-card-header>
-        <ng-container *ngIf="bejelentkezesSuccess; else nincsBejelentkezes">
-          <ion-card-title>Sikeres bejelentkezés</ion-card-title>
-        </ng-container>
-        <ng-template #nincsBejelentkezes>
-          <ion-card-title>Bejelentkezés</ion-card-title>
-        </ng-template>
+      <ion-chip>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-chip>
+    </ion-card>
+  </ng-container>
+  <ng-template #nincsBejelentkezve>
+    <ion-card>
+      <form [formGroup]="regisztracioForm">
+        <ion-card-header>
+          <ng-container *ngIf="regisztracioSuccess; else nincsSubmit">
+            <ion-card-title>Sikeres regisztráció</ion-card-title>
+          </ng-container>
+          <ng-template #nincsSubmit>
+            <ion-card-title>Regisztráció</ion-card-title>
+          </ng-template>
 
-      </ion-card-header>
+        </ion-card-header>
 
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Felhasználónév</ion-label>
-          <ion-input formControlName="name"></ion-input>
-        </ion-item>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Felhasználónév</ion-label>
+            <ion-input formControlName="name"></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Jelszó</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <ion-button color="primary" expand="full" type="submit" (click)="onBejelentkezik()">Bejelentkezés</ion-button>
-      </ion-card-content>
-    </form>
-  </ion-card>
+          <ion-item>
+            <ion-label position="floating">Jelszó</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <ion-button color="primary" expand="full" type="submit" (click)="onRegisztral()">Regisztráció</ion-button>
+        </ion-card-content>
+      </form>
+    </ion-card>
+    <ion-card>
+      <form [formGroup]="bejelentkezesForm">
+        <ion-card-header>
+          <ng-container *ngIf="bejelentkezesSuccess; else nincsBejelentkezes">
+            <ion-card-title>Sikeres bejelentkezés</ion-card-title>
+          </ng-container>
+          <ng-template #nincsBejelentkezes>
+            <ion-card-title>Bejelentkezés</ion-card-title>
+          </ng-template>
+
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Felhasználónév</ion-label>
+            <ion-input formControlName="name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Jelszó</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <ion-button color="primary" expand="full" type="submit" (click)="onBejelentkezik()">Bejelentkezés</ion-button>
+        </ion-card-content>
+      </form>
+    </ion-card>
+  </ng-template>
+
+
 
 </ion-content>
