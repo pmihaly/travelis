@@ -14,6 +14,8 @@ export class Tab2Page {
   private bejelentkezesForm: FormGroup;
   private bejelentkezesSuccess: Boolean = false;
 
+  private profilAdatok: Object;
+
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder
@@ -61,5 +63,11 @@ export class Tab2Page {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.authService
+        .profilAdatok()
+        .subscribe(r => r.subscribe(rs => (this.profilAdatok = rs)));
+    }, 1000);
+  }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { LocalStorage } from "@ngx-pwa/local-storage";
 import { environment } from "src/environments/environment";
-import { map, subscribeOn } from "rxjs/operators";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -29,6 +29,28 @@ export class AuthService {
       .subscribe(valasz => {
         this.localStorage.setItem("token", valasz["token"]).subscribe(() => {});
       });
+  }
+
+  getHTTPOptions() {
+    return this.localStorage.getItem("token").pipe(
+      map(token => {
+        return {
+          headers: new HttpHeaders({
+            Authorization: "Bearer " + token
+          })
+        };
+      })
+    );
+  }
+
+  profilAdatok() {
+    return this.getHTTPOptions().pipe(
+      map(httpOptions =>
+        this.http
+          .get(this.serverAddress + "profil", httpOptions)
+          .pipe(map(res => res))
+      )
+    );
   }
 }
 

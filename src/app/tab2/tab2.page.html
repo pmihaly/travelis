@@ -13,32 +13,59 @@
 <ion-content>
 
   <ng-container *ngIf="authService.bejelentkezve; else nincsBejelentkezve" class="ion-padding">
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" alt="avatar">
-      </ion-avatar>
-      <ion-label>
-        <ion-skeleton-text animated></ion-skeleton-text>
-      </ion-label>
-    </ion-item>
-    <ion-card *ngFor="let i of [0,1,2,3,4,5]">
-      <ion-card-header>
-        <ion-card-subtitle>
-          <ion-skeleton-text animated style="width:50%"></ion-skeleton-text>
-        </ion-card-subtitle>
-        <ion-card-title>
+    <ng-container *ngIf="profilAdatok; else nincsProfilAdat">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" alt="avatar">
+        </ion-avatar>
+        <ion-label>
+          {{profilAdatok.user.name}} Profilja
+        </ion-label>
+      </ion-item>
+      <ion-card *ngFor="let poszt of profilAdatok.posztok">
+        <ion-card-header>
+          <ion-card-subtitle>
+            {{poszt.helyszin}}
+          </ion-card-subtitle>
+          <ion-card-title>
+            {{poszt.cim}}
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{poszt.leiras}}
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+    <ng-template #nincsProfilAdat>
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" alt="avatar">
+        </ion-avatar>
+        <ion-label>
           <ion-skeleton-text animated></ion-skeleton-text>
-        </ion-card-title>
-      </ion-card-header>
+        </ion-label>
+      </ion-item>
+      <ion-card *ngFor="let i of [0,1,2,3,4,5]">
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-skeleton-text animated style="width:50%"></ion-skeleton-text>
+          </ion-card-subtitle>
+          <ion-card-title>
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-card-title>
+        </ion-card-header>
 
-      <ion-card-content>
-        <ion-skeleton-text animated></ion-skeleton-text>
-      </ion-card-content>
+        <ion-card-content>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-card-content>
 
-      <ion-chip>
-        <ion-skeleton-text animated></ion-skeleton-text>
-      </ion-chip>
-    </ion-card>
+        <ion-chip>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-chip>
+      </ion-card>
+    </ng-template>
+
   </ng-container>
   <ng-template #nincsBejelentkezve>
     <ion-card>
