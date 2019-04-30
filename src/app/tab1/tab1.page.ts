@@ -19,7 +19,7 @@ export class Tab1Page {
       Object.keys(posztok).map(egyPoszt => {
         const poszt = posztok[egyPoszt];
         this.http
-          .get(`${environment.serverAddress}/auth/${poszt.felhasznalo}`)
+          .get(`${environment.serverAddress}/auth/${poszt.felhasznalo}/nev`)
           .subscribe(nev => (poszt.felhasznalo = nev));
       });
       this.posztok = posztok;

@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Poszt = require("../models/Poszt");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -29,8 +30,19 @@ router.post("/regisztracio", (req, res) => {
   });
 });
 
-router.get("/:userId", (req, res) => {
+router.get("/:userId/nev", (req, res) => {
   User.findById(req.params.userId).then(user => res.json(user.name));
+});
+
+router.get("/:userId/profil", (req, res) => {
+  User.findById(req.params.userId).then(user => {
+    Poszt.find({ felhasznalo: user._id }).then(posztok => {
+      res.json({
+        user,
+        posztok
+      });
+    });
+  });
 });
 
 module.exports = router;

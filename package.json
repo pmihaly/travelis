@@ -9,7 +9,7 @@
   "scripts": {
     "start-server": "nodemon server",
     "start-client": "ionic serve",
-    "dev": "concurrently -c \"yellow.bold,green.bold\" -n \"SERVER,APP\" \"nodemon server\" \"npm run start-client\"",
+    "dev": "concurrently -c \"yellow.bold,green.bold\" -n \"SERVER,CLIENT\" \"npm run start-server\" \"npm run start-client\"",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
