@@ -3,6 +3,8 @@ const Poszt = require("../models/Poszt");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
+const verifyToken = require("../config/jwt");
+
 const router = require("express").Router();
 
 router.post("/bejelentkezes", (req, res) => {
@@ -34,12 +36,17 @@ router.get("/:userId/nev", (req, res) => {
   User.findById(req.params.userId).then(user => res.json(user.name));
 });
 
-router.get("/:userId/profil", (req, res) => {
-  User.findById(req.params.userId).then(user => {
-    Poszt.find({ felhasznalo: user._id }).then(posztok => {
-      res.json({
-        user,
-        posztok
+router.get("/profil", verifyToken, (req, res) => {
+  jwt.verify(req.token, "macska", (err, authData) => {
+    if (err) {
+      res.send(err);
+    }
+    User.findById(authData._id).then(user => {
+      Poszt.find({ felhasznalo: user._id }).then(posztok => {
+        res.json({
+          user,
+          posztok
+        });
       });
     });
   });
