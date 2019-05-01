@@ -292,6 +292,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/image-picker@^5.5.1":
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/@ionic-native/image-picker/-/image-picker-5.5.1.tgz#7379e7c4c1d754f2dedc876c892630c1352eccf0"
+  integrity sha512-5hF/bXiqWFtliFt/xqXno9oRj0e8UZnK+c1Dnts+mxiJBvv2vHNNJgjFbsNzjscxEInvyvaNGDLXrJu2BPL7mQ==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/splash-screen@^5.0.0":
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/splash-screen/-/splash-screen-5.5.0.tgz#a6158082555033d0cc81c3de9da2248297dcbb99"

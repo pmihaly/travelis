@@ -50,5 +50,4 @@ interface Poszt {
   leiras: string;
   helyszin: string;
   kep: string;
-  felhasznalo: string;
 }

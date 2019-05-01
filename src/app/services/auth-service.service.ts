@@ -28,6 +28,7 @@ export class AuthService {
       .post(this.serverAddress + "bejelentkezes", felhasznalo)
       .subscribe(valasz => {
         this.localStorage.setItem("token", valasz["token"]).subscribe(() => {});
+        this.bejelentkezve = true;
       });
   }
 

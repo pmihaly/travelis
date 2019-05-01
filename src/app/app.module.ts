@@ -12,6 +12,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { PosztModalComponent } from "./poszt-modal/poszt-modal.component";
 
+import { ImagePicker } from "@ionic-native/image-picker/ngx";
+
 @NgModule({
   declarations: [AppComponent, PosztModalComponent],
   entryComponents: [PosztModalComponent],
@@ -26,6 +28,7 @@ import { PosztModalComponent } from "./poszt-modal/poszt-modal.component";
   providers: [
     StatusBar,
     SplashScreen,
+    ImagePicker,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

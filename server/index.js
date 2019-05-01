@@ -15,8 +15,8 @@ mongoose
   .catch(err => console.log(err));
 
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cors());
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(cors({ origin: "*" }));
 
 app.use("/poszt", posztRoute);
 app.use("/auth", authRoute);
