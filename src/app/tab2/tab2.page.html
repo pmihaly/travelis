@@ -24,6 +24,7 @@
       </ion-item>
       <ion-card *ngFor="let poszt of profilAdatok.posztok">
         <ion-card-header>
+          <ion-img [src]="'data:image/png;base64,' + poszt.kep"></ion-img>
           <ion-card-subtitle>
             {{poszt.helyszin}}
           </ion-card-subtitle>

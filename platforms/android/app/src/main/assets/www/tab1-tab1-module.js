@@ -52,7 +52,7 @@ var Tab1PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Új Posztok\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div *ngFor=\"let poszt of posztok\">\n\n    <ion-card>\n      <ion-card-header>\n        <ion-card-subtitle>{{poszt.helyszin}}</ion-card-subtitle>\n        <ion-card-title>{{poszt.cim}}</ion-card-title>\n      </ion-card-header>\n\n      <ion-card-content>\n        {{poszt.leiras}}\n      </ion-card-content>\n\n      <ion-chip>{{poszt.felhasznalo}}</ion-chip>\n    </ion-card>\n\n  </div>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n    <ion-fab-button (click)=\"onPostButtonClick()\">\n      <ion-icon name=\"share\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Új Posztok\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div *ngFor=\"let poszt of posztok\">\n\n    <ion-card>\n      <ion-card-header>\n        <ion-img [src]=\"'data:image/png;base64,' + poszt.kep\"></ion-img>\n        <ion-card-subtitle>{{poszt.helyszin}}</ion-card-subtitle>\n        <ion-card-title>{{poszt.cim}}</ion-card-title>\n      </ion-card-header>\n\n      <ion-card-content>\n        {{poszt.leiras}}\n      </ion-card-content>\n\n      <ion-chip>{{poszt.felhasznalo}}</ion-chip>\n    </ion-card>\n\n  </div>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n    <ion-fab-button (click)=\"onPostButtonClick()\">\n      <ion-icon name=\"share\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n\n</ion-content>"
 
 /***/ }),
 
