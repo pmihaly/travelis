@@ -21,6 +21,10 @@ export class Tab1Page {
   ) {}
 
   ngOnInit() {
+    this.posztokLekerese();
+  }
+
+  private posztokLekerese() {
     this.posztService.getPosztok().subscribe(posztok => {
       // Posztok felhasználóinak nevének lekérése (alapból a felhasznalo egy objectId)
       Object.keys(posztok).map(egyPoszt => {
@@ -39,5 +43,10 @@ export class Tab1Page {
       componentProps: { value: 123 }
     });
     return await modal.present();
+  }
+
+  frissites(e) {
+    this.posztokLekerese();
+    e.target.complete();
   }
 }

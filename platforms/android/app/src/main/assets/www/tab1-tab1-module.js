@@ -52,7 +52,7 @@ var Tab1PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Új Posztok\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div *ngFor=\"let poszt of posztok\">\n\n    <ion-card>\n      <ion-card-header>\n        <ion-img [src]=\"'data:image/png;base64,' + poszt.kep\"></ion-img>\n        <ion-card-subtitle>{{poszt.helyszin}}</ion-card-subtitle>\n        <ion-card-title>{{poszt.cim}}</ion-card-title>\n      </ion-card-header>\n\n      <ion-card-content>\n        {{poszt.leiras}}\n      </ion-card-content>\n\n      <ion-chip>{{poszt.felhasznalo}}</ion-chip>\n    </ion-card>\n\n  </div>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n    <ion-fab-button (click)=\"onPostButtonClick()\">\n      <ion-icon name=\"share\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Új Posztok\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"frissites($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <div *ngFor=\"let poszt of posztok\">\n\n    <ion-card>\n      <ion-card-header>\n        <ion-img [src]=\"'data:image/png;base64,' + poszt.kep\"></ion-img>\n        <ion-card-subtitle>{{poszt.helyszin}}</ion-card-subtitle>\n        <ion-card-title>{{poszt.cim}}</ion-card-title>\n      </ion-card-header>\n\n      <ion-card-content>\n        {{poszt.leiras}}\n      </ion-card-content>\n\n      <ion-chip>{{poszt.felhasznalo}}</ion-chip>\n    </ion-card>\n\n  </div>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n    <ion-fab-button (click)=\"onPostButtonClick()\">\n      <ion-icon name=\"share\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n\n</ion-content>"
 
 /***/ }),
 
@@ -98,6 +98,9 @@ var Tab1Page = /** @class */ (function () {
         this.modalController = modalController;
     }
     Tab1Page.prototype.ngOnInit = function () {
+        this.posztokLekerese();
+    };
+    Tab1Page.prototype.posztokLekerese = function () {
         var _this = this;
         this.posztService.getPosztok().subscribe(function (posztok) {
             // Posztok felhasználóinak nevének lekérése (alapból a felhasznalo egy objectId)
@@ -126,6 +129,10 @@ var Tab1Page = /** @class */ (function () {
                 }
             });
         });
+    };
+    Tab1Page.prototype.frissites = function (e) {
+        this.posztokLekerese();
+        e.target.complete();
     };
     Tab1Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
