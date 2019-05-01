@@ -10,10 +10,11 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { PosztModalComponent } from "./poszt-modal/poszt-modal.component";
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, PosztModalComponent],
+  entryComponents: [PosztModalComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

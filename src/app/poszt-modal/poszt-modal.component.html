@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Új Poszt</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="onKilep()" color="danger">
+        <ion-icon slot="icon-only" name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="posztForm">
+    <ion-card-header>
+      <ion-card-title>Utazás posztolása</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Cím</ion-label>
+        <ion-input formControlName="cim"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Megjegyzés</ion-label>
+        <ion-input formControlName="leiras"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Hely</ion-label>
+        <ion-input formControlName="helyszin"></ion-input>
+      </ion-item>
+      <ion-button color="primary" expand="full" type="submit" (click)="onPosztol()">Posztolás</ion-button>
+    </ion-card-content>
+  </form>
+</ion-content>

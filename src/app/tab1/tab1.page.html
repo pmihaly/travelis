@@ -6,19 +6,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngFor="let poszt of posztok">
+<ion-content>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>{{poszt.helyszin}}</ion-card-subtitle>
-      <ion-card-title>{{poszt.cim}}</ion-card-title>
-    </ion-card-header>
+  <div *ngFor="let poszt of posztok">
 
-    <ion-card-content>
-      {{poszt.leiras}}
-    </ion-card-content>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>{{poszt.helyszin}}</ion-card-subtitle>
+        <ion-card-title>{{poszt.cim}}</ion-card-title>
+      </ion-card-header>
 
-    <ion-chip>{{poszt.felhasznalo}}</ion-chip>
-  </ion-card>
+      <ion-card-content>
+        {{poszt.leiras}}
+      </ion-card-content>
+
+      <ion-chip>{{poszt.felhasznalo}}</ion-chip>
+    </ion-card>
+
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="onPostButtonClick()">
+      <ion-icon name="share"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 
 </ion-content>

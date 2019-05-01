@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/operators";
 
 import { environment } from "../../environments/environment";
+import { LocalStorage } from "@ngx-pwa/local-storage";
+import { AuthService } from "./auth-service.service";
 
 @Injectable({
   providedIn: "root"
@@ -9,7 +12,11 @@ import { environment } from "../../environments/environment";
 export class PosztService {
   private serverAddress = environment.serverAddress + "/poszt/";
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private localStorage: LocalStorage,
+    private authService: AuthService
+  ) {}
 
   getPosztok() {
     return this.http.get(this.serverAddress);
@@ -20,7 +27,13 @@ export class PosztService {
   }
 
   createPoszt(Poszt: Poszt) {
-    return this.http.post(this.serverAddress, Poszt);
+    return this.authService
+      .getHTTPOptions()
+      .pipe(
+        map(httpOptions =>
+          this.http.post(this.serverAddress, Poszt, httpOptions)
+        )
+      );
   }
 
   updatePoszt(Poszt: Poszt, id: string) {

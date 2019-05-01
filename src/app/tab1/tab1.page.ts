@@ -3,6 +3,9 @@ import { PosztService } from "../services/poszt-service.service";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 
+import { ModalController } from "@ionic/angular";
+import { PosztModalComponent } from "../poszt-modal/poszt-modal.component";
+
 @Component({
   selector: "app-tab1",
   templateUrl: "tab1.page.html",
@@ -11,7 +14,11 @@ import { environment } from "src/environments/environment";
 export class Tab1Page {
   private posztok: Object;
 
-  constructor(private posztService: PosztService, private http: HttpClient) {}
+  constructor(
+    private posztService: PosztService,
+    private http: HttpClient,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {
     this.posztService.getPosztok().subscribe(posztok => {
@@ -24,5 +31,13 @@ export class Tab1Page {
       });
       this.posztok = posztok;
     });
+  }
+
+  async onPostButtonClick() {
+    const modal = await this.modalController.create({
+      component: PosztModalComponent,
+      componentProps: { value: 123 }
+    });
+    return await modal.present();
   }
 }
