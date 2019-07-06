@@ -37,11 +37,21 @@ export class PosztService {
   }
 
   updatePoszt(Poszt: Poszt, id: string) {
-    return this.http.put(this.serverAddress + id, Poszt);
+    return this.authService
+      .getHTTPOptions()
+      .pipe(
+        map(httpOptions =>
+          this.http.put(this.serverAddress + id, Poszt, httpOptions)
+        )
+      );
   }
 
   deletePoszt(id: string) {
-    return this.http.delete(this.serverAddress + id);
+    return this.authService
+      .getHTTPOptions()
+      .pipe(
+        map(httpOption => this.http.delete(this.serverAddress + id, httpOption))
+      );
   }
 }
 

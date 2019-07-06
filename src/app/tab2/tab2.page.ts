@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { AuthService } from "../services/auth-service.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { PosztService } from "../services/poszt-service.service";
 
 @Component({
   selector: "app-tab2",
@@ -18,7 +19,8 @@ export class Tab2Page {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private posztService: PosztService
   ) {
     this.regisztracioForm = this.formBuilder.group({
       name: ["", Validators.required],
@@ -61,6 +63,19 @@ export class Tab2Page {
       };
       this.authService.bejelentkezes(felhasznalo);
     }
+  }
+
+  onTorles(id) {
+    this.posztService
+      .deletePoszt(id)
+      .subscribe(r =>
+        r.subscribe(
+          rs =>
+            (this.profilAdatok.posztok = this.profilAdatok.posztok.filter(
+              poszt => poszt._id !== rs._id
+            ))
+        )
+      );
   }
 
   ngOnInit(): void {

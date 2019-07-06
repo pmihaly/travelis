@@ -19,7 +19,7 @@
           <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" alt="avatar">
         </ion-avatar>
         <ion-label>
-          {{profilAdatok.user.name}} Profilja
+          {{profilAdatok.user.name}} profilja
         </ion-label>
       </ion-item>
       <ion-card *ngFor="let poszt of profilAdatok.posztok">
@@ -42,7 +42,7 @@
             <ion-icon name="create" slot="start"></ion-icon>
             Szerkesztés
           </ion-button>
-          <ion-button color="danger">
+          <ion-button color="danger" (click)="onTorles(poszt._id)">
             <ion-icon name="trash" slot="start"></ion-icon>
             Törlés
           </ion-button>
