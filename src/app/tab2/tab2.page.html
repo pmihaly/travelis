@@ -36,6 +36,17 @@
         <ion-card-content>
           {{poszt.leiras}}
         </ion-card-content>
+
+        <ion-item>
+          <ion-button color="primary">
+            <ion-icon name="create" slot="start"></ion-icon>
+            Szerkesztés
+          </ion-button>
+          <ion-button color="danger">
+            <ion-icon name="trash" slot="start"></ion-icon>
+            Törlés
+          </ion-button>
+        </ion-item>
       </ion-card>
     </ng-container>
     <ng-template #nincsProfilAdat>
