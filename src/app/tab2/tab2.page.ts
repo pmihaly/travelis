@@ -15,7 +15,7 @@ export class Tab2Page {
   private bejelentkezesForm: FormGroup;
   private bejelentkezesSuccess: Boolean = false;
 
-  private profilAdatok: Object;
+  private profilAdatok: any;
 
   constructor(
     private authService: AuthService,
@@ -72,7 +72,7 @@ export class Tab2Page {
         r.subscribe(
           rs =>
             (this.profilAdatok.posztok = this.profilAdatok.posztok.filter(
-              poszt => poszt._id !== rs._id
+              poszt => poszt._id !== id
             ))
         )
       );
