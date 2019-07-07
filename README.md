@@ -18,7 +18,9 @@
 
 ## Projektről
 
-![Travelis screenshot](https://user-images.githubusercontent.com/47941079/60765147-bcd29780-a095-11e9-99c3-3675d67ed47a.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/47941079/60765147-bcd29780-a095-11e9-99c3-3675d67ed47a.png" alt="Travelis screenshot"/>
+</p>
 
 Travelis egy fiktív közösségi háló, ahol bejegyzéseket lehet közzétenni, módosítani és törölni (CRUD).
 
