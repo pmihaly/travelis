@@ -25,24 +25,43 @@
       <ion-card *ngFor="let poszt of profilAdatok.posztok">
         <ion-card-header>
           <ion-img [src]="'data:image/png;base64,' + poszt.kep"></ion-img>
-          <ion-card-subtitle>
+          <ion-card-subtitle *ngIf="szerkesztes!==poszt._id">
             {{poszt.helyszin}}
           </ion-card-subtitle>
-          <ion-card-title>
+          <ion-item *ngIf="szerkesztes===poszt._id">
+            <ion-label position="floating">Helyszín</ion-label>
+            <ion-input [(ngModel)]="poszt.helyszin"></ion-input>
+          </ion-item>
+          <ion-card-title *ngIf="szerkesztes!==poszt._id">
             {{poszt.cim}}
           </ion-card-title>
+          <ion-item *ngIf="szerkesztes===poszt._id">
+            <ion-label position="floating">Cím</ion-label>
+            <ion-input [(ngModel)]="poszt.cim"></ion-input>
+          </ion-item>
         </ion-card-header>
 
-        <ion-card-content>
+        <ion-card-content *ngIf="szerkesztes!==poszt._id">
           {{poszt.leiras}}
         </ion-card-content>
 
+        <ion-card-content *ngIf="szerkesztes===poszt._id">
+          <ion-item *ngIf="szerkesztes===poszt._id">
+            <ion-label position="floating">Szöveg</ion-label>
+            <ion-textarea rows="6" cols="20" [(ngModel)]="poszt.leiras"></ion-textarea>
+          </ion-item>
+        </ion-card-content>
+
         <ion-item>
-          <ion-button color="primary">
+          <ion-button color="primary" (click)="onSzerkesztes(poszt._id)" *ngIf="szerkesztes!==poszt._id">
             <ion-icon name="create" slot="start"></ion-icon>
             Szerkesztés
           </ion-button>
-          <ion-button color="danger" (click)="onTorles(poszt._id)">
+          <ion-button color="primary" (click)="onSzerkesztes(poszt._id)" *ngIf="szerkesztes===poszt._id">
+            <ion-icon name="create" slot="start"></ion-icon>
+            Módosítások elküldése
+          </ion-button>
+          <ion-button color="danger" (click)="onTorles(poszt._id)" *ngIf="szerkesztes!==poszt._id">
             <ion-icon name="trash" slot="start"></ion-icon>
             Törlés
           </ion-button>

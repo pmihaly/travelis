@@ -17,6 +17,8 @@ export class Tab2Page {
 
   private profilAdatok: any;
 
+  private szerkesztes: String;
+
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -76,6 +78,20 @@ export class Tab2Page {
             ))
         )
       );
+  }
+
+  onSzerkesztes(id) {
+    if (this.szerkesztes !== id) {
+      this.szerkesztes = id;
+    } else {
+      this.posztService
+        .updatePoszt(
+          this.profilAdatok.posztok.filter(poszt => poszt._id === id)[0],
+          id
+        )
+        .subscribe(mapRes => mapRes.subscribe(httpRes => console.log(httpRes)));
+      this.szerkesztes = null;
+    }
   }
 
   ngOnInit(): void {
